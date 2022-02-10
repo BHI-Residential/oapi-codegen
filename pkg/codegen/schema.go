@@ -71,7 +71,7 @@ type Property struct {
 }
 
 func (p Property) GoFieldName() string {
-	return SchemaNameToTypeName(p.JsonFieldName)
+	return KnownInitialsCheck(SchemaNameToTypeName(p.JsonFieldName))
 }
 
 func (p Property) GoTypeDef() string {

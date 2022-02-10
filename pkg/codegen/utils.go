@@ -86,6 +86,24 @@ func ToCamelCase(str string) string {
 	return n
 }
 
+// KnownInitialsCheck returns the capitilized initials if the string is known.
+func KnownInitialsCheck(str string) string {
+	knownInitials := []string{
+		"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID",
+		"HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "QPS", "RAM",
+		"RPC", "SLA", "SMTP", "SQL", "SSH", "TCP", "TLS", "TTL", "UDP",
+		"UI", "GID", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML",
+		"XMPP", "XSRF", "XSS", "SIP", "RTP", "AMQP", "DB", "TS"}
+
+	for _, s := range knownInitials {
+		if strings.EqualFold(s, str) {
+			return s
+		}
+	}
+
+	return str
+}
+
 // This function returns the keys of the given SchemaRef dictionary in sorted
 // order, since Golang scrambles dictionary keys
 func SortedSchemaKeys(dict map[string]*openapi3.SchemaRef) []string {
